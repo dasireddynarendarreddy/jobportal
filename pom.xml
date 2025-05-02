@@ -11,7 +11,7 @@
 	<groupId>nit</groupId>
 	<artifactId>SpringRestPortal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>war</packaging> <!-- WAR packaging specified here -->
 	<name>SpringRestPortal</name>
 	<description>SPRING MVC</description>
 	<url/>

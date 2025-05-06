@@ -1,24 +1,18 @@
 package com.nt.service;
 
 import java.util.Map;
-
-		
-
-
 import java.util.Optional;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-import org.springframework.data.mongodb.core.query.Query;
-
 import com.mongodb.client.result.UpdateResult;
 import com.nt.enitity.Students;
 import com.nt.repositry.PortalStudent;
-
 
 @Service
 public class AllServices implements StudentsService{
@@ -69,3 +63,4 @@ public class AllServices implements StudentsService{
 	}
 
 }
+

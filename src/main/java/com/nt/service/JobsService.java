@@ -4,7 +4,7 @@ import java.util.List;
 
 import java.util.Map;
 
-
+import com.nt.DTO.JobUpdateDTO;
 import com.nt.enitity.Jobs;
 
 public interface JobsService {
@@ -14,4 +14,5 @@ public interface JobsService {
 	public boolean findJobAndApply(Map<String,Object> info);
 	public boolean removeTheWithDrawPerson(String jobid,String studentid);
 	public List<Jobs> findAllPostedJobs();
+	public boolean jobDataUpdate(JobUpdateDTO dto);
 }

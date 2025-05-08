@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nt.DTO.JobUpdateDTO;
 import com.nt.DTO.RecruterDTO;
 import com.nt.DTO.StudentDTO;
 import com.nt.DTO.UpdateDTO;
@@ -33,7 +35,7 @@ import com.nt.service.JobsService;
 import com.nt.service.RecruterService;
 import com.nt.service.StudentsService;
 
-@CrossOrigin(origins = "https://firstjobportal.netlify.app/") 
+@CrossOrigin(origins={"https://firstjobportal.netlify.app/","http://localhost:5173"}) 
 @RestController
 @RequestMapping("/portal")
 public class EndPoints {
@@ -202,7 +204,16 @@ public class EndPoints {
 		return new ResponseEntity<>("error while updating",HttpStatus.NOT_FOUND);
 		
 	}
-
+     @PutMapping("/update-job")
+     public ResponseEntity<?> updateJob(@RequestBody JobUpdateDTO dto)
+     {
+    	  boolean val=js.jobDataUpdate(dto);
+    	  if(val)
+    		  return new ResponseEntity<>("job updated",HttpStatus.OK);
+    	  
+		return new ResponseEntity<>("job not found",HttpStatus.NOT_FOUND);
+    	 
+     }
 	
 
 }

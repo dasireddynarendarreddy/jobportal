@@ -1,6 +1,7 @@
 package com.nt.service;
 
 import java.util.List;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.mongodb.client.result.UpdateResult;
+import com.nt.DTO.JobUpdateDTO;
 import com.nt.enitity.Jobs;
 import com.nt.repositry.PortalJobs;
 @Service
@@ -71,5 +73,23 @@ public class AllJobService implements JobsService {
 	public List<Jobs> findAllPostedJobs() {
 		
 		return pj.findAll();
+	}
+	@Override
+	public boolean jobDataUpdate(JobUpdateDTO dto) {
+		boolean status=true;
+		Query query=new Query(Criteria.where("_id").is(new ObjectId(dto.getId())));
+		Update update=new Update();
+		dto.getCompanyname().ifPresent(cname->update.set("companyname",cname));
+		dto.getDescription().ifPresent(desc->update.set("description", desc));
+		dto.getJobtitle().ifPresent(title->update.set("jobtitle", title));
+		dto.getLocation().ifPresent(loc->update.set("location", loc));
+		dto.getSkills().ifPresent(skills->update.set("skills", skills));
+		Jobs res=mt.findAndModify(query, update, Jobs.class);
+		if(res==null)
+		{
+			status=false;
+		}
+		
+		return status;
 	}
 }
